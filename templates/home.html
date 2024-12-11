@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Prix de maison</title>
+</head>
+
+
+
+<body>
+    <h1>Prediction prix de maison</h1>
+    <form action="/predict" method="post">
+        <input type="text" name="sqft_living" placeholder="sqft_living" required><br>
+        <input type="text" name="grade" placeholder="grade" required><br>
+        <input type="text" name="sqft_above" placeholder="sqft_above" required><br>
+        <input type="text" name="sqft_living15" placeholder="sqft_living15" required><br>
+        <input type="text" name="bathrooms" placeholder="bathrooms" required><br>
+    
+       
+        <button type="submit">Predict</button>
+    </form>
+
+    <br>
+    <br>
+
+</div>
+{{prediction_text}}
+
+</body>
+</html>
