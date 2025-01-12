@@ -2,29 +2,98 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Prediction Prix de maison</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prédiction de Prix d'une maison</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #ec0d0d;
+            display: flex;
+            flex-direction: column; /* Organiser le contenu en colonne */
+            align-items: center; /* Centrer horizontalement */
+            justify-content: center; /* Centrer verticalement */
+            height: 100vh; /* Prendre toute la hauteur de la fenêtre */
+        }
+        h1 {
+            color: #eb0b0b;
+            text-align: center;
+        }
+        form {
+            display: inline-block;
+            padding: 50px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            display: block;
+            margin: 10px auto;
+            padding: 12px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px 20px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result, .error {
+            position: absolute; /* Position absolue pour placer indépendamment */
+            bottom: 0; /* Positionner au bas de la fenêtre */
+            left: 50%; /* Centrer horizontalement */
+            transform: translateX(-50%); /* Correction du centrage */
+            margin-bottom: 100px; /* Espacement avec le bas */
+            font-size: 18px;
+            text-align: center;
+            background: #fff;
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .result {
+            color: #007BFF;
+        }
+        .error {
+            color: #FF0000;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
-
-
 <body>
-    <h1>Prediction prix de maison</h1>
     <form action="/predict" method="post">
-        <input type="text" name="sqft_living" placeholder="sqft_living" required><br>
-        <input type="text" name="grade" placeholder="grade" required><br>
-        <input type="text" name="sqft_above" placeholder="sqft_above" required><br>
-        <input type="text" name="sqft_living15" placeholder="sqft_living15" required><br>
-        <input type="text" name="bathrooms" placeholder="bathrooms" required><br>
-    
-       
-        <button type="submit">Predict</button>
+        <h1>Prédiction de Prix d'une maison</h1>
+        <input type="text" name="sqft_living" placeholder="Surface habitable (sqft)" required>
+        <input type="text" name="grade" placeholder="Note de qualité (grade)" required>
+        <input type="text" name="sqft_above" placeholder="Surface au-dessus (sqft)" required>
+        <input type="text" name="sqft_living15" placeholder="Surface habitable (voisinage)" required>
+        <input type="text" name="bathrooms" placeholder="Nombre de salles de bain" required>
+        <button type="submit">Prédire</button>
     </form>
 
-    <br>
-    <br>
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
 
-</div>
-{{prediction_text}}
-
+    {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+    {% endif %}
 </body>
 </html>
